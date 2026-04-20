@@ -159,6 +159,7 @@ const toolBadges: TechBadgeProps[] = [
 export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [imgError, setImgError] = useState(false)
   const fadeRefs = useRef<(HTMLElement | null)[]>([])
 
   // Init theme from localStorage / system preference
@@ -279,9 +280,11 @@ export default function App() {
       <header className="hero">
         <div className="hero-left">
           <p className="hero-eyebrow animate d1">Full-Stack Web Developer — St. Louis, MO</p>
+
           <h1 className="animate d2">
             Niah<br />LeBlanc
           </h1>
+
           <p className="hero-sub animate d3">
             I ship full-stack applications — from REST APIs and auth systems to responsive React
             frontends. MERN stack, C# MVC, SQL &amp; NoSQL, deployed to Azure. Ready to contribute
@@ -335,15 +338,34 @@ export default function App() {
           </div>
         </div>
 
-        <div className="hero-meta animate d4">
-          <strong>Degree</strong>
-          A.A.S. Web Development
-          <strong style={{ marginTop: '1rem' }}>School</strong>
-          Ranken Technical College
-          <strong style={{ marginTop: '1rem' }}>Location</strong>
-          St. Louis, MO
-          <strong style={{ marginTop: '1rem' }}>Status</strong>
-          <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Open to opportunities</span>
+        <div className="hero-right">
+          {/* Profile picture — sits above the meta card */}
+          <div className="hero-profile-pic animate d3">
+            {!imgError ? (
+              <img
+                src="/Images/ProfilePicture.jpg"
+                alt="Niah LeBlanc"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="hero-profile-placeholder">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width={52} height={52}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+            )}
+          </div>
+
+          <div className="hero-meta animate d4">
+            <strong>Degree</strong>
+            A.A.S. Web Development
+            <strong style={{ marginTop: '1rem' }}>School</strong>
+            Ranken Technical College
+            <strong style={{ marginTop: '1rem' }}>Location</strong>
+            St. Louis, MO
+            <strong style={{ marginTop: '1rem' }}>Status</strong>
+            <span style={{ color: 'var(--accent)', fontWeight: 500 }}>Open to opportunities</span>
+          </div>
         </div>
       </header>
 
