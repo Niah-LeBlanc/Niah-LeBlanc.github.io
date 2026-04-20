@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 // ── SVG ICONS ──
@@ -160,7 +160,6 @@ export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
   const [menuOpen, setMenuOpen] = useState(false)
   const [imgError, setImgError] = useState(false)
-  const fadeRefs = useRef<(HTMLElement | null)[]>([])
 
   // Init theme from localStorage / system preference
   useEffect(() => {
