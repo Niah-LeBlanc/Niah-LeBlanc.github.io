@@ -76,6 +76,7 @@ interface Project {
   imageSrc: string
   imageAlt: string
   githubUrl: string
+  liveUrl?: string
   tags: TechBadgeProps[]
 }
 
@@ -107,6 +108,7 @@ const projects: Project[] = [
     imageSrc: '/Images/ByteBoardHero.png',
     imageAlt: 'ByteBoard application screenshot',
     githubUrl: 'https://github.com/Niah-LeBlanc/ByteBoard.git',
+    liveUrl: 'https://byteboard-c9cfbneta7atb2e8.canadacentral-01.azurewebsites.net/',
     tags: [
       { variant: 'csharp',  imgSrc: '/CSharp.svg',              label: 'C# MVC' },
       { variant: 'sql',     imgSrc: '/Microsoft SQL Server.svg', label: 'SQL Server' },
@@ -219,7 +221,7 @@ export default function App() {
         <a href="#projects" onClick={closeMobileMenu}>Projects</a>
         <div className="mobile-menu-divider" />
         <a
-          href="NiahLeBlanc_Resume.pdf"
+          href="/NiahLeBlanc_Resume.pdf"
           target="_blank"
           className="accent"
           onClick={closeMobileMenu}
@@ -238,7 +240,7 @@ export default function App() {
               <li><a href="#projects">Projects</a></li>
               <li>
                 <a
-                  href="NiahLeBlanc_Resume.pdf"
+                  href="/NiahLeBlanc_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="resume-nav"
@@ -300,7 +302,7 @@ export default function App() {
               <EmailIcon size={15} />
               Get In Touch
             </a>
-            <a href="NiahLeBlanc_Resume.pdf" download className="resume-btn">
+            <a href="/NiahLeBlanc_Resume.pdf" download className="resume-btn">
               <DownloadIcon size={15} />
               Download Résumé
             </a>
@@ -443,6 +445,16 @@ export default function App() {
                   ))}
                 </div>
                 <div className="project-actions">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      className="btn btn-primary"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Live
+                    </a>
+                  )}
                   <a
                     href={project.githubUrl}
                     className="btn btn-secondary"
@@ -462,7 +474,7 @@ export default function App() {
       {/* Footer */}
       <footer>
         <p>© 2026 Niah LeBlanc</p>
-        <a href="NiahLeBlanc_Resume.pdf" download>
+        <a href="/NiahLeBlanc_Resume.pdf" download>
           Download Résumé ↓
         </a>
       </footer>
